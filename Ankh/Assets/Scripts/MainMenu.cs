@@ -5,10 +5,14 @@ using UnityEditor.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] Canvas loadMenuCanvas;
+    [SerializeField] Canvas optionsMenuCanvas; 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        loadMenuCanvas.gameObject.SetActive(false);
+        optionsMenuCanvas.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,7 +21,7 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    private void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
