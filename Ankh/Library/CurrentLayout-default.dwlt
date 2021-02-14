@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 7398
+  controlID: 15267
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 7346
+  controlID: 15242
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -273,7 +273,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1
     y: 19
-    width: 1167
+    width: 1123
     height: 695
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1167, y: 656}
+  m_TargetSize: {x: 1123, y: 632}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -371,9 +371,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ecc5ffff
-      m_LastClickedID: -14868
-      m_ExpandedIDs: 62e0ffff6ce0ffffe2e5ffffd4e7ffffe6e7ffffb4e8ffffcce8ffffe4edffffe4f2ffff1af3ffff2ef3ffffb2f3fffff2f3ffff60f4ffff74f4ffffb4f4ffffd6f4ffffe8f4fffff8f4ffff64fbffff4c390000423a00005c3a0000723a0000b63a0000644700005a480000b25500007058000090610000e2610000e6610000f6610000fe61000092620000be620000
+      m_SelectedIDs: c2ceffff
+      m_LastClickedID: -12606
+      m_ExpandedIDs: 88d3ffff6ad5ffff7addffff6ce3ffff88f2ffff64fbffff1e3900006a390000543a0000743a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -433,9 +433,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 550.5895, y: 235.88268, z: -1050.2891}
+    m_Target: {x: 570.40594, y: 317.72665, z: -74.3125}
     speed: 2
-    m_Value: {x: 533.1377, y: 237.49858, z: -1048.4789}
+    m_Value: {x: 570.40594, y: 317.72665, z: -74.3125}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -485,9 +485,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 420.2794
+    m_Target: 362.57913
     speed: 2
-    m_Value: 402.18124
+    m_Value: 362.57913
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -551,20 +551,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Imported packages/Fantasy Wooden GUI  Free/normal_ui_set A
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Imported packages/Fantasy Wooden GUI  Free/normal_ui_set A
   m_LastFoldersGridSize: -1
   m_LastProjectPath: X:\Unity\Ankh\Ankh
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 803b0000
-    m_LastClickedID: 15232
-    m_ExpandedIDs: 00000000743b000000ca9a3b
+    m_SelectedIDs: b23b0000
+    m_LastClickedID: 15282
+    m_ExpandedIDs: 00000000863b00008c3b0000b03b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -592,7 +592,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000743b000000ca9a3b
+    m_ExpandedIDs: 00000000863b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
