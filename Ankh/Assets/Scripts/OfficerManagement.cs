@@ -22,5 +22,6 @@ public class OfficerManagement : MonoBehaviour
         //Spawns us an officer but does not add it to a list...yet
         Officer newOfficer = Instantiate(officerToInstantiate, PoliceStation.position, Quaternion.identity);
         officerIdle.Add(newOfficer);
+        print(officerIdle.Count + " Idle Officers");
     }
 }

@@ -15,9 +15,12 @@ public class OfficerAssignement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Turns off the UI panel at run time (seems to be the best way to do it)
         officerAssignment.gameObject.SetActive(false);
-        //Cannot work out how to find all of the officers in scene
+        
+        //Give us the total number of officers at run time.
         officerTotal = FindObjectsOfType(typeof(Officer)).Length;
+
         UpdateOfficerTotal();
     }
 
@@ -35,7 +38,6 @@ public class OfficerAssignement : MonoBehaviour
 
     public void IncreaseOfficers()
     {
-        //GameObject
         UpdateOfficerTotal();
     }
 
