@@ -18,7 +18,7 @@ public class OfficerAssignement : MonoBehaviour
         //Turns off the UI panel at run time (seems to be the best way to do it)
         officerAssignment.gameObject.SetActive(false);
         
-        //Give us the total number of officers at run time.
+        //Give us the total number of officers at start of run time.
         officerTotal = FindObjectsOfType(typeof(Officer)).Length;
 
         UpdateOfficerTotal();
@@ -36,6 +36,7 @@ public class OfficerAssignement : MonoBehaviour
 
     }
 
+    //Accessed via a button in the unity UI system
     public void IncreaseOfficers()
     {
         UpdateOfficerTotal();

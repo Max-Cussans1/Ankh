@@ -27,14 +27,18 @@ public class OfficerManagement : MonoBehaviour
 
     public void FireOfficer()
     {
-        //Eventually this should remove the specific officer from the force for now we just remove one idle officer
+        
         if (officerIdle.Count <= 0)
         {
             //Pop up a UI saying - no idle officers.
+            print("No Officer to fire");
             return;
         }
         else
         {
+            //Eventually this should remove the specific officer from the force for now we just remove one idle officer
+            Officer firedOfficer = officerIdle[officerIdle.Count];
+            Destroy(firedOfficer);
             officerIdle.Remove(officerIdle[officerIdle.Count]);
         }
     }
