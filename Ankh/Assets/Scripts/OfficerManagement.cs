@@ -16,13 +16,12 @@ public class OfficerManagement : MonoBehaviour
     {
         
     }
-
     public void HireNewOfficer()
     {
-        //Spawns us an officer but does not add it to a list...yet
-        Officer newOfficer = Instantiate(officerToInstantiate, PoliceStation.position, Quaternion.identity);
+        Officer newOfficer = Instantiate(officerToInstantiate);
         officerIdle.Add(newOfficer);
         print(officerIdle.Count + " Idle Officers");
+
     }
 
     public void FireOfficer()
@@ -37,9 +36,10 @@ public class OfficerManagement : MonoBehaviour
         else
         {
             //Eventually this should remove the specific officer from the force for now we just remove one idle officer
-            Officer firedOfficer = officerIdle[officerIdle.Count];
+            //this just deletes the script
+            Officer firedOfficer = officerIdle[officerIdle.Count-1];
             Destroy(firedOfficer);
-            officerIdle.Remove(officerIdle[officerIdle.Count]);
+            officerIdle.Remove(officerIdle[officerIdle.Count -1]);
         }
     }
 }
