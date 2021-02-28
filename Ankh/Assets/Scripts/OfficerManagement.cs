@@ -42,4 +42,23 @@ public class OfficerManagement : MonoBehaviour
             officerIdle.Remove(officerIdle[officerIdle.Count -1]);
         }
     }
+    public void MoveIdleOfficerToPatrolling()
+    {
+        if (officerIdle.Count <= 0)
+        {
+            //Pop up a UI saying - no idle officers.
+            print("No Free Officers");
+            return;
+        }
+
+    else
+        {
+            Officer idleToPatrol = officerIdle[officerIdle.Count - 1];
+            officerIdle.Remove(idleToPatrol);
+            officerPatrol.Add(idleToPatrol);
+            print(officerIdle.Count + " Idle officers");
+            print(officerPatrol.Count + " Patrolling officers");
+        }
+
+    }
 }
