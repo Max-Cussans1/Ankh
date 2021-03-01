@@ -38,7 +38,7 @@ public class OfficerManagement : MonoBehaviour
             //Eventually this should remove the specific officer from the force for now we just remove one idle officer
             //this just deletes the script
             Officer firedOfficer = officerIdle[officerIdle.Count-1];
-            Destroy(firedOfficer);
+            Destroy(firedOfficer.gameObject);
             officerIdle.Remove(officerIdle[officerIdle.Count -1]);
         }
     }
@@ -58,6 +58,26 @@ public class OfficerManagement : MonoBehaviour
             officerPatrol.Add(idleToPatrol);
             print(officerIdle.Count + " Idle officers");
             print(officerPatrol.Count + " Patrolling officers");
+        }
+
+    }
+
+    public void MoveIdleOfficerToInvestigation()
+    {
+        if (officerIdle.Count <= 0)
+        {
+            //Pop up a UI saying - no idle officers.
+            print("No Free Officers");
+            return;
+        }
+
+        else
+        {
+            Officer idleToInvestigation = officerIdle[officerIdle.Count - 1];
+            officerIdle.Remove(idleToInvestigation);
+            officerInvestigation.Add(idleToInvestigation);
+            print(officerIdle.Count + " Idle officers");
+            print(officerInvestigation.Count + " Investigating officers");
         }
 
     }
