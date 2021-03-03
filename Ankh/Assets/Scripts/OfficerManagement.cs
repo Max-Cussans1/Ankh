@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class OfficerManagement : MonoBehaviour
 {
@@ -25,34 +26,44 @@ public class OfficerManagement : MonoBehaviour
 
     [Header("Canvases")]
     [SerializeField] Canvas officerAssignment;
+    [SerializeField] Canvas noFreeOfficersPopUp;
 
     void Start()
     {
         //Turns off the UI panel at run time (seems to be the best way to do it)
         officerAssignment.gameObject.SetActive(false);
+        noFreeOfficersPopUp.gameObject.SetActive(false);
         officerTotal = FindObjectsOfType(typeof(Officer)).Length;
 
+        StringTotalsToUI();
+    }
+
+    private void StringTotalsToUI()
+    {
         UpdateOfficerTotal();
-        UpdatePatrollingTotal();
+        UpdateOfficerJobs();
     }
 
     private void UpdateOfficerTotal()
     {
-        officerTotal = FindObjectsOfType(typeof(Officer)).Length;
+        officerTotal = officerIdle.Count + officerInvestigation.Count + officerRecords.Count + officerPatrol.Count;
         officerTotalText.text = officerTotal.ToString();
-        print("Officer Total = " + officerTotal);
     }
 
-    private void UpdatePatrollingTotal()
+    private void UpdateOfficerJobs()
     {
         patrollingOfficerTotal.text = officerPatrol.Count.ToString() + "/" + officerTotal.ToString();
+        investigatingOfficerTotal.text = officerInvestigation.Count.ToString() + "/" + officerTotal.ToString();
+        recordsOfficerTotal.text = officerRecords.Count.ToString() + "/" + officerTotal.ToString();
+        idleOfficerTotal.text = officerIdle.Count.ToString() + "/" + officerTotal.ToString();
+
     }
 
     public void HireNewOfficer()
     {
         Officer newOfficer = Instantiate(officerToInstantiate);
         officerIdle.Add(newOfficer);
-        UpdateOfficerTotal();
+        StringTotalsToUI();
 
     }
 
@@ -63,7 +74,6 @@ public class OfficerManagement : MonoBehaviour
         {
             //Todo - Pop up a UI saying - no idle officers.
             print("No Officer to fire");
-            return;
         }
         else
         {
@@ -71,23 +81,36 @@ public class OfficerManagement : MonoBehaviour
             Officer firedOfficer = officerIdle[officerIdle.Count-1];
             Destroy(firedOfficer.gameObject);
             officerIdle.Remove(officerIdle[officerIdle.Count -1]);
-            UpdateOfficerTotal();
+            StringTotalsToUI();
         }
     }
     public void MoveIdleOfficerToPatrolling()
     {
         if (officerIdle.Count <= 0)
         {
-            //Pop up a UI saying - no idle officers.
-            print("No Free Officers");
-            return;
+            NoFreeOfficers();
         }
     else
         {
             Officer idleToPatrol = officerIdle[officerIdle.Count - 1];
             officerIdle.Remove(idleToPatrol);
             officerPatrol.Add(idleToPatrol);
-            UpdatePatrollingTotal();
+            StringTotalsToUI();
+        }
+    }
+
+    public void MovePatrolingOfficerToIdle()
+    {
+        if (officerPatrol.Count <= 0)
+        {
+            NoFreeOfficers();
+        }
+        else
+        {
+            Officer patrolToIdle = officerPatrol[officerPatrol.Count - 1];
+            officerPatrol.Remove(patrolToIdle);
+            officerIdle.Add(patrolToIdle);
+            StringTotalsToUI();
         }
     }
 
@@ -95,9 +118,7 @@ public class OfficerManagement : MonoBehaviour
     {
         if (officerIdle.Count <= 0)
         {
-            //Pop up a UI saying - no idle officers.
-            print("No Free Officers");
-            return;
+            NoFreeOfficers();
         }
 
         else
@@ -105,8 +126,59 @@ public class OfficerManagement : MonoBehaviour
             Officer idleToInvestigation = officerIdle[officerIdle.Count - 1];
             officerIdle.Remove(idleToInvestigation);
             officerInvestigation.Add(idleToInvestigation);
-            print(officerIdle.Count + " Idle officers");
-            print(officerInvestigation.Count + " Investigating officers");
+            StringTotalsToUI();
         }
+    }
+
+    public void MoveInvestigationOfficerToIdle()
+    {
+        if (officerInvestigation.Count <= 0)
+        {
+            NoFreeOfficers();
+        }
+
+        else
+        {
+            Officer investigationToIdle = officerInvestigation[officerInvestigation.Count - 1];
+            officerInvestigation.Remove(investigationToIdle);
+            officerIdle.Add(investigationToIdle);
+            StringTotalsToUI();
+        }
+    }
+
+    public void MoveIdleOfficerToRecords()
+    {
+        if (officerIdle.Count <= 0)
+        {
+            NoFreeOfficers();
+        }
+
+        else
+        {
+            Officer idleToRecords = officerIdle[officerIdle.Count - 1];
+            officerIdle.Remove(idleToRecords);
+            officerRecords.Add(idleToRecords);
+            StringTotalsToUI();
+        }
+    }
+
+    public void MoveRecordsOfficerToIdle()
+    {
+        if (officerRecords.Count <= 0)
+        {
+            NoFreeOfficers();
+        }
+
+        else
+        {
+            Officer recordsToIdle = officerRecords[officerRecords.Count - 1];
+            officerRecords.Remove(recordsToIdle);
+            officerIdle.Add(recordsToIdle);
+            StringTotalsToUI();
+        }
+    }
+    private void NoFreeOfficers()
+    {
+        noFreeOfficersPopUp.gameObject.SetActive(true);
     }
 }
