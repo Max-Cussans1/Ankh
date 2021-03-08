@@ -61,10 +61,10 @@ public class OfficerManagement : MonoBehaviour
 
     public void HireNewOfficer()
     {
-        Officer newOfficer = Instantiate(officerToInstantiate);
-        officerIdle.Add(newOfficer);
+        //So I do not need to actually add officers!?
+        //Officer newOfficer = Instantiate(officerToInstantiate);
+        officerIdle.Add(new Officer("Mildred", "Golbin", 1, 2));
         StringTotalsToUI();
-
     }
 
     public void FireOfficer()
