@@ -62,9 +62,17 @@ public class OfficerManagement : MonoBehaviour
     public void HireNewOfficer()
     {
         //So I do not need to actually add officers!?
-        //Officer newOfficer = Instantiate(officerToInstantiate);
-        officerIdle.Add(new Officer("Mildred", "Golbin", 1, 2));
-        StringTotalsToUI();
+        Officer newOfficer = Instantiate(officerToInstantiate);
+        officerIdle.Add(newOfficer);
+        AssignOfficerStats(newOfficer);
+    }
+
+    private static void AssignOfficerStats(Officer newOfficer)
+    {
+        newOfficer.officerName = "Name";
+        newOfficer.officerRace = "Goblin";
+        newOfficer.officerLevel = 1;
+        newOfficer.patrolArea = 0;
     }
 
     public void FireOfficer()
