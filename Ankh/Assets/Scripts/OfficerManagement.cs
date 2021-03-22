@@ -17,31 +17,44 @@ public class OfficerManagement : MonoBehaviour
     [SerializeField] Transform PoliceStation;
     [SerializeField] int officerTotal = 0;
 
-    [Header("To String Objects")]
+    [Header("Officer Assignment panel to string")]
     [SerializeField] TMP_Text patrollingOfficerTotal;
     [SerializeField] TMP_Text investigatingOfficerTotal;
     [SerializeField] TMP_Text recordsOfficerTotal;
     [SerializeField] TMP_Text idleOfficerTotal;
     [SerializeField] TMP_Text officerTotalText;
 
+    [Header("Home Page officer overview")]
+
     [Header("Canvases")]
     [SerializeField] Canvas officerAssignment;
     [SerializeField] Canvas noFreeOfficersPopUp;
+    [SerializeField] Canvas hireOfficerPopUp;
 
     void Start()
     {
         //Turns off the UI panel at run time (seems to be the best way to do it)
         officerAssignment.gameObject.SetActive(false);
         noFreeOfficersPopUp.gameObject.SetActive(false);
+        hireOfficerPopUp.gameObject.SetActive(false);
         officerTotal = FindObjectsOfType(typeof(Officer)).Length;
 
         StringTotalsToUI();
+        BuildOfficerListUI();
+    }
+
+    private void BuildOfficerListUI()
+    {
+        foreach (Officer officer in officerIdle)
+            print("Test");
+        
     }
 
     private void StringTotalsToUI()
     {
         UpdateOfficerTotal();
         UpdateOfficerJobs();
+        BuildOfficerListUI();
     }
 
     private void UpdateOfficerTotal()
@@ -65,6 +78,7 @@ public class OfficerManagement : MonoBehaviour
         Officer newOfficer = Instantiate(officerToInstantiate);
         officerIdle.Add(newOfficer);
         AssignOfficerStats(newOfficer);
+        StringTotalsToUI();
     }
 
     private static void AssignOfficerStats(Officer newOfficer)
