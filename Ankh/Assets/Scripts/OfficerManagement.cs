@@ -9,7 +9,7 @@ public class OfficerManagement : MonoBehaviour
 
     //Lists
     List<Officer> officerIdle = new List<Officer>();
-    List<Officer> officerPatrol = new List<Officer>();
+    public List<Officer> officerPatrol = new List<Officer>();
     List<Officer> officerInvestigation = new List<Officer>();
     List<Officer> officerRecords = new List<Officer>();
 
