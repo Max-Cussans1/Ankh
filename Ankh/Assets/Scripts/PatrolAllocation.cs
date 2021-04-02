@@ -6,6 +6,7 @@ using UnityEngine;
 public class PatrolAllocation : MonoBehaviour
 {
     [SerializeField] Canvas mapAndPatrolAllocation;
+    [SerializeField] OfficerManagement officerManagement;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,15 @@ public class PatrolAllocation : MonoBehaviour
         
     }
 
-    private void CheckPatrolAllocation()
+    private void CheckPatrolAllocation(Officer)
     {
-        
+        foreach (Officer officer in officerManagement.officerPatrol)
+        {
+            GetComponent<Officer>().patrolArea.GetType();
+            if(Officer. = 0)
+            {
+
+            }
+        }
     }
 }
