@@ -21,13 +21,13 @@ public class PatrolAllocation : MonoBehaviour
         
     }
 
-    private void CheckPatrolAllocation(Officer)
+    private void CheckPatrolAllocation()
     {
-        foreach (Officer officer in officerManagement.officerPatrol)
-        {
-            GetComponent<Officer>().patrolArea.GetType();
-            if(Officer. = 0)
-            {
+        //foreach (Officer officer in officerManagement.officerPatrol)
+
+            GameObject theofficer  = GameObject.Find("Officer");
+            Officer officerScript = theofficer.GetComponent<Officer>();
+            theofficer.patrol
 
             }
         }
