@@ -9155,6 +9155,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapAndPatrolAllocation: {fileID: 1131961922}
   officerManagement: {fileID: 1338953192}
+  unassignedText: {fileID: 270496831}
+  areaOneText: {fileID: 1845484505}
+  areaTwoText: {fileID: 342791395}
+  areaThreeText: {fileID: 875606693}
+  areaFourText: {fileID: 1609046126}
+  areaFiveText: {fileID: 1485317801}
 --- !u!1 &1161521972
 GameObject:
   m_ObjectHideFlags: 0

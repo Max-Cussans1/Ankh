@@ -1,12 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PatrolAllocation : MonoBehaviour
 {
     [SerializeField] Canvas mapAndPatrolAllocation;
     [SerializeField] OfficerManagement officerManagement;
+
+    [Header("Patrol group to string")]
+    [SerializeField] TMP_Text unassignedText;
+    [SerializeField] TMP_Text areaOneText;
+    [SerializeField] TMP_Text areaTwoText;
+    [SerializeField] TMP_Text areaThreeText;
+    [SerializeField] TMP_Text areaFourText;
+    [SerializeField] TMP_Text areaFiveText;
+
+    //TMP_Text totalPatrollingOfficers = officerManagement.officerPatrol.Count;
 
     int unassigned = 0;
     int areaOne = 0;
@@ -50,6 +61,7 @@ public class PatrolAllocation : MonoBehaviour
             if (currentAllocation == 0)
             {
                 unassigned++;
+                print(unassigned);
             }
             else if (currentAllocation == 1)
             {
@@ -71,7 +83,13 @@ public class PatrolAllocation : MonoBehaviour
             {
                 areaFive++;
             }
-            //String Values to Text
+            print(unassigned);
+            stringPatrolNumersToUI();
         }
+    }
+
+    private void stringPatrolNumersToUI()
+    {
+        throw new NotImplementedException();
     }
 }
