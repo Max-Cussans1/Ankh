@@ -40,21 +40,12 @@ public class OfficerManagement : MonoBehaviour
         officerTotal = FindObjectsOfType(typeof(Officer)).Length;
 
         StringTotalsToUI();
-        BuildOfficerListUI();
-    }
-
-    private void BuildOfficerListUI()
-    {
-        foreach (Officer officer in officerIdle)
-            print("Test");
-        
     }
 
     private void StringTotalsToUI()
     {
         UpdateOfficerTotal();
         UpdateOfficerJobs();
-        BuildOfficerListUI();
     }
 
     private void UpdateOfficerTotal()

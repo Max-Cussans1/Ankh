@@ -10,6 +10,7 @@ public class PatrolAllocation : MonoBehaviour
     [SerializeField] OfficerManagement officerManagement;
 
     [Header("Patrol group to string")]
+    [SerializeField] TMP_Text allPatrolingOfficer;
     [SerializeField] TMP_Text unassignedText;
     [SerializeField] TMP_Text areaOneText;
     [SerializeField] TMP_Text areaTwoText;
@@ -17,8 +18,9 @@ public class PatrolAllocation : MonoBehaviour
     [SerializeField] TMP_Text areaFourText;
     [SerializeField] TMP_Text areaFiveText;
 
-    //TMP_Text totalPatrollingOfficers = officerManagement.officerPatrol.Count;
+    OfficerManagement officerManagementRef;
 
+    //TMP_Text totalPatrollingOfficers = officerManagement.officerPatrol.Count;
     int unassigned = 0;
     int areaOne = 0;
     int areaTwo = 0;
@@ -50,8 +52,15 @@ public class PatrolAllocation : MonoBehaviour
 
     }
 
-    private void CheckPatrolAllocation()
+    public void UpdateAllNumber()
     {
+        resetPatrolNumbers();
+        CheckPatrolAllocation();
+    }
+
+    public void CheckPatrolAllocation()
+    {
+        officerManagementRef = GetComponent<OfficerManagement>();
         foreach (Officer officer in officerManagement.officerPatrol)
         {
             GameObject theofficer = GameObject.Find("Officer");
@@ -83,13 +92,19 @@ public class PatrolAllocation : MonoBehaviour
             {
                 areaFive++;
             }
-            print(unassigned);
             stringPatrolNumersToUI();
         }
     }
 
     private void stringPatrolNumersToUI()
     {
-        throw new NotImplementedException();
+        int allPatrolingOfficerCount = officerManagement.officerPatrol.Count;
+        allPatrolingOfficer.text = allPatrolingOfficer.ToString();
+        unassignedText.text = unassigned + "/" + allPatrolingOfficer.ToString();
+        areaOneText.text = areaOne + "/" + allPatrolingOfficer.ToString();
+        areaTwoText.text = areaTwo + "/" + allPatrolingOfficer.ToString();
+        areaThreeText.text = areaThree + "/" + allPatrolingOfficer.ToString();
+        areaFourText.text = areaFour + "/" + allPatrolingOfficer.ToString();
+        areaFiveText.text = areaFive + "/" + allPatrolingOfficer.ToString();
     }
 }
