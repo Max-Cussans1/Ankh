@@ -21,29 +21,29 @@ public class PatrolAllocation : MonoBehaviour
     OfficerManagement officerManagementRef;
 
     //TMP_Text totalPatrollingOfficers = officerManagement.officerPatrol.Count;
-    int unassigned = 0;
-    int areaOne = 0;
-    int areaTwo = 0;
-    int areaThree = 0;
-    int areaFour = 0;
-    int areaFive = 0;
+    public int unassigned = 0;
+    public int areaOne = 0;
+    public int areaTwo = 0;
+    public int areaThree = 0;
+    public int areaFour = 0;
+    public int areaFive = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         mapAndPatrolAllocation.gameObject.SetActive(false);
-        CheckPatrolAllocation();
+        officerManagementRef.CheckPatrolAllocation();
         resetPatrolNumbers();
     }
 
     private void resetPatrolNumbers()
     {
-        int unassigned = 0;
-        int areaOne = 0;
-        int areaTwo = 0;
-        int areaThree = 0;
-        int areaFour = 0;
-        int areaFive = 0;
+        unassigned = 0;
+        areaOne = 0;
+        areaTwo = 0;
+        areaThree = 0;
+        areaFour = 0;
+        areaFive = 0;
     }
 
     // Update is called once per frame
@@ -55,12 +55,14 @@ public class PatrolAllocation : MonoBehaviour
     public void UpdateAllNumber()
     {
         resetPatrolNumbers();
-        CheckPatrolAllocation();
+        officerManagementRef.CheckPatrolAllocation();
+        stringPatrolNumbersToUI();
     }
 
-    public void CheckPatrolAllocation()
+    public void CheckPatrolAllocationOLD()
     {
         officerManagementRef = GetComponent<OfficerManagement>();
+        print("Checking Patrol Allocation");
         foreach (Officer officer in officerManagement.officerPatrol)
         {
             GameObject theofficer = GameObject.Find("Officer");
@@ -72,39 +74,40 @@ public class PatrolAllocation : MonoBehaviour
                 unassigned++;
                 print(unassigned);
             }
-            else if (currentAllocation == 1)
+            if (currentAllocation == 1)
             {
                 areaOne++;
             }
-            else if (currentAllocation == 2)
+            if (currentAllocation == 2)
             {
                 areaTwo++;
             }
-            else if (currentAllocation == 3)
+            if (currentAllocation == 3)
             {
                 areaThree++;
             }
-            else if (currentAllocation == 4)
+            if (currentAllocation == 4)
             {
                 areaFour++;
             }
-            else if (currentAllocation == 5)
+            if (currentAllocation == 5)
             {
                 areaFive++;
             }
-            stringPatrolNumersToUI();
+            stringPatrolNumbersToUI();
         }
     }
 
-    private void stringPatrolNumersToUI()
+    public void stringPatrolNumbersToUI()
     {
+        print("stringing totals to UI");
         int allPatrolingOfficerCount = officerManagement.officerPatrol.Count;
-        allPatrolingOfficer.text = allPatrolingOfficer.ToString();
-        unassignedText.text = unassigned + "/" + allPatrolingOfficer.ToString();
-        areaOneText.text = areaOne + "/" + allPatrolingOfficer.ToString();
-        areaTwoText.text = areaTwo + "/" + allPatrolingOfficer.ToString();
-        areaThreeText.text = areaThree + "/" + allPatrolingOfficer.ToString();
-        areaFourText.text = areaFour + "/" + allPatrolingOfficer.ToString();
-        areaFiveText.text = areaFive + "/" + allPatrolingOfficer.ToString();
+        allPatrolingOfficer.text = allPatrolingOfficerCount.ToString();
+        unassignedText.text = unassigned.ToString() + "/" + allPatrolingOfficerCount.ToString();
+        areaOneText.text = areaOne.ToString() + "/" + allPatrolingOfficerCount.ToString();
+        areaTwoText.text = areaTwo.ToString() + "/" + allPatrolingOfficerCount.ToString();
+        areaThreeText.text = areaThree.ToString() + "/" + allPatrolingOfficerCount.ToString();
+        areaFourText.text = areaFour.ToString() + "/" + allPatrolingOfficerCount.ToString();
+        areaFiveText.text = areaFive.ToString() + "/" + allPatrolingOfficerCount.ToString();
     }
 }
