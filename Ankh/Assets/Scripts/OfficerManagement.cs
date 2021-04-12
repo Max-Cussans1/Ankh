@@ -32,6 +32,7 @@ public class OfficerManagement : MonoBehaviour
     [SerializeField] Canvas hireOfficerPopUp;
 
     PatrolAllocation patrolAllocationRef;
+    string selectedOfficerRace;
 
     void Start()
     {
