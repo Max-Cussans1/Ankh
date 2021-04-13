@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using System;
 
 public class OfficerManagement : MonoBehaviour
@@ -31,6 +32,12 @@ public class OfficerManagement : MonoBehaviour
     [SerializeField] Canvas noFreeOfficersPopUp;
     [SerializeField] Canvas hireOfficerPopUp;
 
+    [Header("Officer Race Buttons")]
+    [SerializeField] Button humanButton;
+    [SerializeField] Button DwarfButton;
+    [SerializeField] Button TrollButton;
+    [SerializeField] Button GoblinButton;
+
     PatrolAllocation patrolAllocationRef;
     string selectedOfficerRace;
 
@@ -43,6 +50,7 @@ public class OfficerManagement : MonoBehaviour
         officerTotal = FindObjectsOfType(typeof(Officer)).Length;
 
         StringTotalsToUI();
+        SelectOfficerRace();
     }
 
     private void StringTotalsToUI()
@@ -68,17 +76,16 @@ public class OfficerManagement : MonoBehaviour
 
     public void HireNewOfficer()
     {
-        //So I do not need to actually add officers!?
         Officer newOfficer = Instantiate(officerToInstantiate);
         officerIdle.Add(newOfficer);
         AssignOfficerStats(newOfficer);
         StringTotalsToUI();
     }
 
-    private static void AssignOfficerStats(Officer newOfficer)
+    private void AssignOfficerStats(Officer newOfficer)
     {
         newOfficer.officerName = "Name";
-        newOfficer.officerRace = "Goblin";
+        newOfficer.officerRace = selectedOfficerRace;
         newOfficer.officerLevel = 1;
         newOfficer.patrolArea = 0;
         newOfficer.patroling = false;
@@ -196,6 +203,35 @@ public class OfficerManagement : MonoBehaviour
             StringTotalsToUI();
         }
     }
+
+    private void SelectOfficerRace()
+    {
+        humanButton.onClick.AddListener(HumanRaceSelected);
+        DwarfButton.onClick.AddListener(DwarfRaceSelected);
+        TrollButton.onClick.AddListener(TrollRaceSelected);
+        GoblinButton.onClick.AddListener(GoblinRaceSelected);
+}
+
+    private void HumanRaceSelected()
+    {
+        selectedOfficerRace = "Human";
+    }
+
+    private void DwarfRaceSelected()
+    {
+        selectedOfficerRace = "Dwarf";
+    }
+
+    private void TrollRaceSelected()
+    {
+        selectedOfficerRace = "Troll";
+    }
+
+    private void GoblinRaceSelected()
+    {
+        selectedOfficerRace = "Goblin";
+    }
+
     private void NoFreeOfficers()
     {
         noFreeOfficersPopUp.gameObject.SetActive(true);

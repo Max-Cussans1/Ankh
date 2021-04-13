@@ -11792,6 +11792,10 @@ MonoBehaviour:
   officerAssignment: {fileID: 167606303}
   noFreeOfficersPopUp: {fileID: 1904385528}
   hireOfficerPopUp: {fileID: 1243645607}
+  humanButton: {fileID: 1994596962}
+  DwarfButton: {fileID: 1247832341}
+  TrollButton: {fileID: 1713099439}
+  GoblinButton: {fileID: 1764052223}
 --- !u!1 &1339237230
 GameObject:
   m_ObjectHideFlags: 0
