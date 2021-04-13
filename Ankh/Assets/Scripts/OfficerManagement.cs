@@ -38,7 +38,6 @@ public class OfficerManagement : MonoBehaviour
     [SerializeField] Button TrollButton;
     [SerializeField] Button GoblinButton;
 
-    PatrolAllocation patrolAllocationRef;
     string selectedOfficerRace;
 
     void Start()
@@ -235,40 +234,5 @@ public class OfficerManagement : MonoBehaviour
     private void NoFreeOfficers()
     {
         noFreeOfficersPopUp.gameObject.SetActive(true);
-    }
-    public void CheckPatrolAllocation()
-    {
-        foreach (Officer officer in officerPatrol)
-        {
-            GameObject theofficer = GameObject.Find("Officer");
-            Officer officerScript = theofficer.GetComponent<Officer>();
-            int currentAllocation = officerScript.patrolArea;
-
-            if (currentAllocation == 0)
-            {
-                patrolAllocationRef.unassigned++;
-            }
-            if (currentAllocation == 1)
-            {
-                patrolAllocationRef.areaOne++;
-            }
-            if (currentAllocation == 2)
-            {
-                patrolAllocationRef.areaTwo++;
-            }
-            if (currentAllocation == 3)
-            {
-                patrolAllocationRef.areaThree++;
-            }
-            if (currentAllocation == 4)
-            {
-                patrolAllocationRef.areaFour++;
-            }
-            if (currentAllocation == 5)
-            {
-                patrolAllocationRef.areaFive++;
-            }
-            patrolAllocationRef.stringPatrolNumbersToUI();
-        }
     }
 }

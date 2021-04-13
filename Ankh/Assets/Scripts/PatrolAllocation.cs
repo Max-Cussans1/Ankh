@@ -32,7 +32,7 @@ public class PatrolAllocation : MonoBehaviour
     void Start()
     {
         mapAndPatrolAllocation.gameObject.SetActive(false);
-        officerManagementRef.CheckPatrolAllocation();
+        CheckPatrolAllocation();
         resetPatrolNumbers();
     }
 
@@ -49,48 +49,44 @@ public class PatrolAllocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void UpdateAllNumber()
     {
         resetPatrolNumbers();
-        officerManagementRef.CheckPatrolAllocation();
+        CheckPatrolAllocation();
         stringPatrolNumbersToUI();
     }
 
-    public void CheckPatrolAllocationOLD()
+    public void CheckPatrolAllocation()
     {
         officerManagementRef = GetComponent<OfficerManagement>();
         print("Checking Patrol Allocation");
         foreach (Officer officer in officerManagement.officerPatrol)
         {
-            GameObject theofficer = GameObject.Find("Officer");
-            Officer officerScript = theofficer.GetComponent<Officer>();
-            int currentAllocation = officerScript.patrolArea;
-
-            if (currentAllocation == 0)
+            if (officer.patrolArea == 0)
             {
                 unassigned++;
                 print(unassigned);
             }
-            if (currentAllocation == 1)
+            if (officer.patrolArea == 1)
             {
                 areaOne++;
             }
-            if (currentAllocation == 2)
+            if (officer.patrolArea == 2)
             {
                 areaTwo++;
             }
-            if (currentAllocation == 3)
+            if (officer.patrolArea == 3)
             {
                 areaThree++;
             }
-            if (currentAllocation == 4)
+            if (officer.patrolArea == 4)
             {
                 areaFour++;
             }
-            if (currentAllocation == 5)
+            if (officer.patrolArea == 5)
             {
                 areaFive++;
             }
