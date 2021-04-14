@@ -20,7 +20,7 @@ public class PatrolAllocation : MonoBehaviour
 
     OfficerManagement officerManagementRef;
 
-    //TMP_Text totalPatrollingOfficers = officerManagement.officerPatrol.Count;
+    [Header("Patrol totals")]
     public int unassigned = 0;
     public int areaOne = 0;
     public int areaTwo = 0;
@@ -106,4 +106,13 @@ public class PatrolAllocation : MonoBehaviour
         areaFourText.text = areaFour.ToString() + "/" + allPatrolingOfficerCount.ToString();
         areaFiveText.text = areaFive.ToString() + "/" + allPatrolingOfficerCount.ToString();
     }
+
+    public void MoveOfficerPatrolGroup()
+    {
+        //Define which way we want to move the officer (Idle/0 to active/1-5) or the opposite
+        //Define which idle officer we are moving
+        //Switch the officer to the new patrol group
+        //If there are none free - give the player a pop up       
+    }
+
 }
