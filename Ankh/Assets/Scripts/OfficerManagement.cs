@@ -87,7 +87,6 @@ public class OfficerManagement : MonoBehaviour
         newOfficer.officerRace = selectedOfficerRace;
         newOfficer.officerLevel = 1;
         newOfficer.patrolArea = 0;
-        newOfficer.patroling = false;
     }
 
     public void FireOfficer()
@@ -118,7 +117,6 @@ public class OfficerManagement : MonoBehaviour
             Officer idleToPatrol = officerIdle[officerIdle.Count - 1];
             officerIdle.Remove(idleToPatrol);
             officerPatrol.Add(idleToPatrol);
-            idleToPatrol.patroling = true;
             StringTotalsToUI();
         }
     }
@@ -134,7 +132,6 @@ public class OfficerManagement : MonoBehaviour
             Officer patrolToIdle = officerPatrol[officerPatrol.Count - 1];
             officerPatrol.Remove(patrolToIdle);
             officerIdle.Add(patrolToIdle);
-            patrolToIdle.patroling = false;
             StringTotalsToUI();
         }
     }

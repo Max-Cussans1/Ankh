@@ -1,0 +1,2 @@
+X:\Unity\Ankh\Ankh\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+X:\Unity\Ankh\Ankh\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

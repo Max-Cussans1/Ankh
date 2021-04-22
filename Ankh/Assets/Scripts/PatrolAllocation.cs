@@ -7,8 +7,7 @@ using UnityEngine;
 public class PatrolAllocation : MonoBehaviour
 {
     [SerializeField] Canvas mapAndPatrolAllocation;
-    [SerializeField] OfficerManagement officerManagement;
-
+    [SerializeField] Canvas noFreeOfficersPopUp;
     [Header("Patrol group to string")]
     [SerializeField] TMP_Text allPatrolingOfficer;
     [SerializeField] TMP_Text unassignedText;
@@ -19,6 +18,8 @@ public class PatrolAllocation : MonoBehaviour
     [SerializeField] TMP_Text areaFiveText;
 
     OfficerManagement officerManagementRef;
+    [SerializeField] OfficerManagement officerManagementSF;
+    int selectedPatrolButton;
 
     [Header("Patrol totals")]
     public int unassigned = 0;
@@ -27,6 +28,8 @@ public class PatrolAllocation : MonoBehaviour
     public int areaThree = 0;
     public int areaFour = 0;
     public int areaFive = 0;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,34 +64,42 @@ public class PatrolAllocation : MonoBehaviour
 
     public void CheckPatrolAllocation()
     {
-        officerManagementRef = GetComponent<OfficerManagement>();
-        print("Checking Patrol Allocation");
-        foreach (Officer officer in officerManagement.officerPatrol)
+        //officerManagementSF = GetComponent<OfficerManagement>();
+        if (officerManagementSF.officerPatrol.Count == 0)
         {
-            if (officer.patrolArea == 0)
+            stringPatrolNumbersToUI();
+            return;
+        }
+        else
+        { 
+            foreach (Officer patrolingOfficer in officerManagementSF.officerPatrol)
             {
-                unassigned++;
-                print(unassigned);
-            }
-            if (officer.patrolArea == 1)
-            {
-                areaOne++;
-            }
-            if (officer.patrolArea == 2)
-            {
-                areaTwo++;
-            }
-            if (officer.patrolArea == 3)
-            {
-                areaThree++;
-            }
-            if (officer.patrolArea == 4)
-            {
-                areaFour++;
-            }
-            if (officer.patrolArea == 5)
-            {
-                areaFive++;
+                if (patrolingOfficer.patrolArea == 0)
+                {
+                    unassigned++;
+                    print(unassigned);
+                }
+                if (patrolingOfficer.patrolArea == 1)
+                {
+                    areaOne++;
+                }
+                if (patrolingOfficer.patrolArea == 2)
+                {
+                    areaTwo++;
+                }
+                if (patrolingOfficer.patrolArea == 3)
+                {
+                    areaThree++;
+                }
+                if (patrolingOfficer.patrolArea == 4)
+                {
+                    areaFour++;
+                }
+                if (patrolingOfficer.patrolArea == 5)
+                {
+                    areaFive++;
+                }
+            
             }
             stringPatrolNumbersToUI();
         }
@@ -97,7 +108,7 @@ public class PatrolAllocation : MonoBehaviour
     public void stringPatrolNumbersToUI()
     {
         print("stringing totals to UI");
-        int allPatrolingOfficerCount = officerManagement.officerPatrol.Count;
+        int allPatrolingOfficerCount = officerManagementSF.officerPatrol.Count;
         allPatrolingOfficer.text = allPatrolingOfficerCount.ToString();
         unassignedText.text = unassigned.ToString() + "/" + allPatrolingOfficerCount.ToString();
         areaOneText.text = areaOne.ToString() + "/" + allPatrolingOfficerCount.ToString();
@@ -106,13 +117,46 @@ public class PatrolAllocation : MonoBehaviour
         areaFourText.text = areaFour.ToString() + "/" + allPatrolingOfficerCount.ToString();
         areaFiveText.text = areaFive.ToString() + "/" + allPatrolingOfficerCount.ToString();
     }
+    public void AreaOnePressed() { selectedPatrolButton = 1; }
+    public void AreaTwoPressed() { selectedPatrolButton = 2; }
+    public void AddAreaThreePressed() { selectedPatrolButton = 3; }
+    public void AddAreaFourPressed() { selectedPatrolButton = 4; }
+    public void AddAreaFivePressed() { selectedPatrolButton = 5; }
 
-    public void MoveOfficerPatrolGroup()
+    public void MoveUnassignedToActive()
     {
-        //Define which way we want to move the officer (Idle/0 to active/1-5) or the opposite
-        //Define which idle officer we are moving
-        //Switch the officer to the new patrol group
-        //If there are none free - give the player a pop up       
+        if (unassigned == 0)
+        {
+            noFreeOfficersPopUp.gameObject.SetActive(true);
+        }
+        else
+        {
+            foreach (Officer officer in officerManagementSF.officerPatrol)
+            {
+                if (officer.patrolArea == 0)
+                {
+                    officer.patrolArea = selectedPatrolButton;
+                    return;
+                }
+            }
+        }
+        stringPatrolNumbersToUI();
     }
 
+    public void moveActiveOfficerToUnassigned()
+    {
+        foreach (Officer officer in officerManagementSF.officerPatrol)
+        {
+            if (officer.patrolArea == selectedPatrolButton)
+            {
+                officer.patrolArea = 0;
+                return;
+            }
+            else
+            {
+                noFreeOfficersPopUp.gameObject.SetActive(true);
+            }
+        }
+        stringPatrolNumbersToUI();
+    }
 }
