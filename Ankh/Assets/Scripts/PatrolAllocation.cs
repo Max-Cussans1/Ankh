@@ -35,8 +35,7 @@ public class PatrolAllocation : MonoBehaviour
     void Start()
     {
         mapAndPatrolAllocation.gameObject.SetActive(false);
-        CheckPatrolAllocation();
-        resetPatrolNumbers();
+        UpdateAllNumber();
     }
 
     private void resetPatrolNumbers()
@@ -64,10 +63,8 @@ public class PatrolAllocation : MonoBehaviour
 
     public void CheckPatrolAllocation()
     {
-        //officerManagementSF = GetComponent<OfficerManagement>();
         if (officerManagementSF.officerPatrol.Count == 0)
         {
-            stringPatrolNumbersToUI();
             return;
         }
         else
@@ -77,7 +74,6 @@ public class PatrolAllocation : MonoBehaviour
                 if (patrolingOfficer.patrolArea == 0)
                 {
                     unassigned++;
-                    print(unassigned);
                 }
                 if (patrolingOfficer.patrolArea == 1)
                 {
@@ -99,9 +95,7 @@ public class PatrolAllocation : MonoBehaviour
                 {
                     areaFive++;
                 }
-            
             }
-            stringPatrolNumbersToUI();
         }
     }
 
@@ -136,11 +130,11 @@ public class PatrolAllocation : MonoBehaviour
                 if (officer.patrolArea == 0)
                 {
                     officer.patrolArea = selectedPatrolButton;
-                    return;
+                    //return;
                 }
             }
         }
-        stringPatrolNumbersToUI();
+        UpdateAllNumber();
     }
 
     public void moveActiveOfficerToUnassigned()
@@ -157,6 +151,6 @@ public class PatrolAllocation : MonoBehaviour
                 noFreeOfficersPopUp.gameObject.SetActive(true);
             }
         }
-        stringPatrolNumbersToUI();
+        UpdateAllNumber();
     }
 }
