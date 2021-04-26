@@ -19,7 +19,6 @@ public class PatrolAllocation : MonoBehaviour
 
     OfficerManagement officerManagementRef;
     [SerializeField] OfficerManagement officerManagementSF;
-    int selectedPatrolButton;
 
     [Header("Patrol totals")]
     public int unassigned = 0;
@@ -51,7 +50,7 @@ public class PatrolAllocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void UpdateAllNumber()
@@ -68,7 +67,7 @@ public class PatrolAllocation : MonoBehaviour
             return;
         }
         else
-        { 
+        {
             foreach (Officer patrolingOfficer in officerManagementSF.officerPatrol)
             {
                 if (patrolingOfficer.patrolArea == 0)
@@ -98,7 +97,6 @@ public class PatrolAllocation : MonoBehaviour
             }
         }
     }
-
     public void stringPatrolNumbersToUI()
     {
         print("stringing totals to UI");
@@ -111,13 +109,8 @@ public class PatrolAllocation : MonoBehaviour
         areaFourText.text = areaFour.ToString() + "/" + allPatrolingOfficerCount.ToString();
         areaFiveText.text = areaFive.ToString() + "/" + allPatrolingOfficerCount.ToString();
     }
-    public void AreaOnePressed() { selectedPatrolButton = 1; }
-    public void AreaTwoPressed() { selectedPatrolButton = 2; }
-    public void AddAreaThreePressed() { selectedPatrolButton = 3; }
-    public void AddAreaFourPressed() { selectedPatrolButton = 4; }
-    public void AddAreaFivePressed() { selectedPatrolButton = 5; }
 
-    public void MoveUnassignedToActive()
+    public void AddOfficerToArea(int area)
     {
         if (unassigned == 0)
         {
@@ -129,28 +122,44 @@ public class PatrolAllocation : MonoBehaviour
             {
                 if (officer.patrolArea == 0)
                 {
-                    officer.patrolArea = selectedPatrolButton;
-                    //return;
+                    officer.patrolArea = area;
+                    break;
                 }
             }
         }
         UpdateAllNumber();
     }
 
-    public void moveActiveOfficerToUnassigned()
+    public void MoveOfficerToIdlePatrol(int area)
+    {
+        bool anyActiveOfficer = CheckForActiveOfficers(area);
+
+        if (anyActiveOfficer == true)
+        {
+            foreach (Officer officer in officerManagementSF.officerPatrol)
+            {
+                if (officer.patrolArea == area)
+                {
+                    officer.patrolArea = 0;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            noFreeOfficersPopUp.gameObject.SetActive(true);
+        }
+        UpdateAllNumber();
+    }
+    public bool CheckForActiveOfficers(int area)
     {
         foreach (Officer officer in officerManagementSF.officerPatrol)
         {
-            if (officer.patrolArea == selectedPatrolButton)
+            if (officer.patrolArea == area)
             {
-                officer.patrolArea = 0;
-                return;
-            }
-            else
-            {
-                noFreeOfficersPopUp.gameObject.SetActive(true);
+                return true;
             }
         }
-        UpdateAllNumber();
+        return false;
     }
 }

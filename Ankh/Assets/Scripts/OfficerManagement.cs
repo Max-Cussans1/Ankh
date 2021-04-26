@@ -70,7 +70,6 @@ public class OfficerManagement : MonoBehaviour
         investigatingOfficerTotal.text = officerInvestigation.Count.ToString() + "/" + officerTotal.ToString();
         recordsOfficerTotal.text = officerRecords.Count.ToString() + "/" + officerTotal.ToString();
         idleOfficerTotal.text = officerIdle.Count.ToString() + "/" + officerTotal.ToString();
-
     }
 
     public void HireNewOfficer()
@@ -208,28 +207,10 @@ public class OfficerManagement : MonoBehaviour
         GoblinButton.onClick.AddListener(GoblinRaceSelected);
 }
 
-    private void HumanRaceSelected()
-    {
-        selectedOfficerRace = "Human";
-    }
+    private void HumanRaceSelected(){selectedOfficerRace = "Human";}
+    private void DwarfRaceSelected(){selectedOfficerRace = "Dwarf";}
+    private void TrollRaceSelected(){selectedOfficerRace = "Troll";}
+    private void GoblinRaceSelected(){selectedOfficerRace = "Goblin";}
 
-    private void DwarfRaceSelected()
-    {
-        selectedOfficerRace = "Dwarf";
-    }
-
-    private void TrollRaceSelected()
-    {
-        selectedOfficerRace = "Troll";
-    }
-
-    private void GoblinRaceSelected()
-    {
-        selectedOfficerRace = "Goblin";
-    }
-
-    private void NoFreeOfficers()
-    {
-        noFreeOfficersPopUp.gameObject.SetActive(true);
-    }
+    private void NoFreeOfficers(){noFreeOfficersPopUp.gameObject.SetActive(true);}
 }
