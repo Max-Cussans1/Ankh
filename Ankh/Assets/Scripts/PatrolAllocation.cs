@@ -17,7 +17,6 @@ public class PatrolAllocation : MonoBehaviour
     [SerializeField] TMP_Text areaFourText;
     [SerializeField] TMP_Text areaFiveText;
 
-    OfficerManagement officerManagementRef;
     [SerializeField] OfficerManagement officerManagementSF;
 
     [Header("Patrol totals")]
@@ -99,7 +98,6 @@ public class PatrolAllocation : MonoBehaviour
     }
     public void stringPatrolNumbersToUI()
     {
-        print("stringing totals to UI");
         int allPatrolingOfficerCount = officerManagementSF.officerPatrol.Count;
         allPatrolingOfficer.text = allPatrolingOfficerCount.ToString();
         unassignedText.text = unassigned.ToString() + "/" + allPatrolingOfficerCount.ToString();
