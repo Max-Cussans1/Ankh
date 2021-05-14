@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class OfficerListUI : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class OfficerListUI : MonoBehaviour
     [SerializeField] OfficerManagement officerManagementRef;
     [SerializeField] GameObject contentListLocation;
     [SerializeField] GameObject officerListTemplate;
+    [SerializeField] TMP_Text officerNameButtonText;
+    [SerializeField] TMP_Text officerRaceButtonText;
+    [SerializeField] TMP_Text officerLevelButtonText;
+    [SerializeField] TMP_Text officerRoleButtonText;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +25,14 @@ public class OfficerListUI : MonoBehaviour
     {
         foreach (Officer officer in officerManagementRef.officerPatrol)
         {
+            officerNameButtonText.text = officer.officerName.ToString();
+            officerRaceButtonText.text = officer.officerRace.ToString();
+            officerLevelButtonText.text = officer.officerLevel.ToString();
+
             var officerListEntry = Instantiate(officerListTemplate);
             officerListEntry.transform.parent = contentListLocation.transform;
 
-            print("Name =" + officer.officerName);
-            print("Race = " + officer.officerRace);
-            print("Level = " + officer.officerLevel);
-            print("patrol Area =" + officer.patrolArea);
+
         }
         //TODO
         //Find all officers in the scene/game

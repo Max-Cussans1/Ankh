@@ -17,6 +17,7 @@ public class OfficerManagement : MonoBehaviour
     [SerializeField] Officer officerToInstantiate;
     [SerializeField] Transform PoliceStation;
     [SerializeField] int officerTotal = 0;
+    [SerializeField] OfficerListUI officerListUIRef;
 
     [Header("Officer Assignment panel to string")]
     [SerializeField] TMP_Text patrollingOfficerTotal;
@@ -78,6 +79,7 @@ public class OfficerManagement : MonoBehaviour
         officerIdle.Add(newOfficer);
         AssignOfficerStats(newOfficer);
         StringTotalsToUI();
+        officerListUIRef.PopulateListOfOfficers();
     }
 
     private void AssignOfficerStats(Officer newOfficer)
