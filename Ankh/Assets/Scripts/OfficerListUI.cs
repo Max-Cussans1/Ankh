@@ -8,8 +8,12 @@ public class OfficerListUI : MonoBehaviour
 {
 
     [SerializeField] OfficerManagement officerManagementRef;
+
+    [Header("List gameobjects")]
     [SerializeField] GameObject contentListLocation;
     [SerializeField] GameObject officerListTemplate;
+
+    [Header(" Officer List text elements")]
     [SerializeField] TMP_Text officerNameButtonText;
     [SerializeField] TMP_Text officerRaceButtonText;
     [SerializeField] TMP_Text officerLevelButtonText;
@@ -23,6 +27,10 @@ public class OfficerListUI : MonoBehaviour
 
     public void PopulateListOfOfficers()
     {
+        //clear list function
+       foreach (Transform child in contentListLocation.transform)
+            GameObject.Destroy(child.gameObject);
+        //Might break the code as the object to instate from, "officerListTemplate", is in scene.
         foreach (Officer officer in officerManagementRef.officerPatrol)
         {
             officerNameButtonText.text = officer.officerName.ToString();

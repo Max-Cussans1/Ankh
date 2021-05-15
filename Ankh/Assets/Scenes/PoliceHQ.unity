@@ -7344,6 +7344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficerListTemplate
       objectReference: {fileID: 0}
+    - target: {fileID: 3887356577916395756, guid: 9022ee87a2ceaf94fa6138e729f98018,
+        type: 3}
+      propertyPath: m_TagString
+      value: OfficerListTemplate
+      objectReference: {fileID: 0}
     - target: {fileID: 4029788549846237061, guid: 9022ee87a2ceaf94fa6138e729f98018,
         type: 3}
       propertyPath: m_Pivot.x
